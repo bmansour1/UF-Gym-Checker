@@ -11,13 +11,13 @@ export class GymInfraStack extends cdk.Stack {
 
    const imgProcessing = new lambda.Function(this, "ImgProcessing", {
     runtime: lambda.Runtime.PYTHON_3_9,
-    code: lambda.Code.fromAsset("../UF-Gym-Checker/lambda_function_api.zip"),
+    code: lambda.Code.fromAsset("../img_processing/lambda_function_img.zip"),
     handler: "image_processor.handler",
    });
 
    const api = new lambda.Function(this, "API", {
     runtime: lambda.Runtime.PYTHON_3_9,
-    code: lambda.Code.fromAsset("../api/lambda_function_img.zip"),
+    code: lambda.Code.fromAsset("../api/lambda_function_api.zip"),
     handler: "backend.handler",
     environment: {
       IMG_PROCESSING_FUNCTION_ARN: imgProcessing.functionArn,
